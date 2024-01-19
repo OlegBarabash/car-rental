@@ -2,6 +2,7 @@ import { fetchCars } from 'components/redux/cars/operations';
 import { selectCars } from 'components/redux/cars/selectors';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CarImg, LMButton, List, ListItem } from './CarsList.styled';
 
 export const CarsList = () => {
   const dispatch = useDispatch();
@@ -15,19 +16,21 @@ export const CarsList = () => {
   return (
     <div>
       <h2>CarsList</h2>
-      <ul>
+      <List>
         {cars &&
           cars.map(({ id, year, make, model, img, rentalPrice }) => (
-            <li key={id}>
-              <img src={img} alt={model} />
-              <span>{make}</span>
-              <span>{model}</span>
-              <span>{year}</span>
+            <ListItem key={id}>
+              <CarImg src={img} alt={model} />
+              <div>
+                <span>{make}</span>
+                <span>{model}</span>
+                <span>{year}</span>
+              </div>
               <span>{rentalPrice}</span>
-              <button>Learn more</button>
-            </li>
+              <LMButton>Learn more</LMButton>
+            </ListItem>
           ))}
-      </ul>
+      </List>
     </div>
   );
 };
