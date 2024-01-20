@@ -8,20 +8,23 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  display: flex;
+  position: relative;
   width: 274px;
   height: 426px;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 28px;
+  justify-content: space-between;
   background-color: #fff;
-  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
-    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  border-radius: 14px;
+  /* box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08); */
 `;
 
 export const CarImg = styled.img`
   width: 274px;
   height: 268px;
+  margin-bottom: 14px;
   flex-shrink: 0;
   border-radius: 14px;
   background: linear-gradient(
@@ -31,6 +34,63 @@ export const CarImg = styled.img`
     ),
     #f3f3f2;
   object-fit: cover;
+`;
+
+export const HeartBtn = styled.button`
+  width: 18px;
+  height: 18px;
+
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  right: 14px;
+  top: 12px;
+
+  & svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    /* transition: all 0.2s ease; */
+  }
+
+  & use {
+    stroke: #ffffff;
+    fill: #3470ff;
+  }
+`;
+
+export const NamePriceDiv = styled.div`
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+
+  color: #121417;
+  font-weight: 500;
+  line-height: 1.5;
+
+  & p span {
+    color: #3470ff;
+  }
+`;
+
+export const DescriptionText = styled.p`
+  color: rgba(18, 20, 23, 0.5);
+  font-size: 12px;
+  line-height: 1.5;
+  & svg {
+    width: 8px;
+    height: 16px;
+    margin-bottom: 4px;
+    vertical-align: middle;
+  }
+
+  & use {
+    stroke: rgba(18, 20, 23, 0.1);
+  }
 `;
 
 export const LMButton = styled.button`

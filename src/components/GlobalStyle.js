@@ -9,11 +9,11 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
-	font-family: 'Manrope', sans-serif;
+	font-family: "Manrope", sans-serif;
 	font-style: normal;
 	font-weight: 400;
   margin: 0;
-  background-color: #f4f4fd;;
+  background-color: white;
   color: black;
 	}
 

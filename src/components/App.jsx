@@ -1,5 +1,5 @@
 // import { Navigate, Route, Routes } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { Home } from '../pages/Home';
 import { GlobalStyle } from './GlobalStyle';
 // import { selectCars } from 'components/redux/cars/selectors';
 
