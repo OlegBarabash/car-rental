@@ -24,17 +24,18 @@ export const ItemsList = () => {
   );
 
   const handleLike = id => {
-    console.log('localItems 1 ', localItems);
     if (localItems.includes(id)) {
       setLocalItems(() => localItems.filter(c => c !== id));
     } else if (!localItems.length) {
-      setLocalItems([id]);
+      setLocalItems(() => [id]);
     } else {
       setLocalItems(() => [...localItems, id]);
     }
-    localStorage.setItem('cars', JSON.stringify(localItems));
-    console.log('localItems 2 ', localItems);
   };
+
+  useEffect(() => {
+    localStorage.setItem('cars', JSON.stringify(localItems));
+  }, [localItems]);
 
   const [openModal, setOpenModal] = useState(null);
 

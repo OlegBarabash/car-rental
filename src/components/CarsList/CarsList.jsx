@@ -25,12 +25,9 @@ export const CarsList = () => {
   const handleLike = id => {
     if (localItems.includes(id)) {
       setLocalItems(() => localItems.filter(c => c !== id));
-      console.log('includ');
     } else if (!localItems.length) {
-      console.log('empty', id);
       setLocalItems(() => [id]);
     } else {
-      console.log('add');
       setLocalItems(() => [...localItems, id]);
     }
   };
