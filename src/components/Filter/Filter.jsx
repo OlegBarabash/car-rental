@@ -1,26 +1,72 @@
-// import { Formik, Form, Field, FieldArray } from 'formik';
+import { Formik, Field } from 'formik';
 import React from 'react';
+import { FilterWrapper, FormWrap, LabelWrap } from './Filter.styled';
 
-// const handleSubmit = value => {
-//   console.log('Submit', value);
-// };
+const carMakes = [
+  'Buick',
+  'Volvo',
+  'HUMMER',
+  'Subaru',
+  'Mitsubishi',
+  'Nissan',
+  'Lincoln',
+  'GMC',
+  'Hyundai',
+  'MINI',
+  'Bentley',
+  'Mercedes-Benz',
+  'Aston Martin',
+  'Pontiac',
+  'Lamborghini',
+  'Audi',
+  'BMW',
+  'Chevrolet',
+  'Mercedes-Benz',
+  'Chrysler',
+  'Kia',
+  'Land',
+];
+
+const prices = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const handleSubmit = value => {
+  console.log('Submit', value);
+};
 
 export const Filter = () => {
   return (
-    <div>
-      {/* <Formik initialValues={{}} onSubmit={handleSubmit}>
-        <Form>
-          <label>
+    <FilterWrapper>
+      <Formik initialValues={{}} onSubmit={handleSubmit}>
+        <FormWrap>
+          <LabelWrap>
             Car brand
-            <Field name="color" as="select">
-              <option value="red">Red</option>
-              <option value="green">Green</option>
-              <option value="blue">Blue</option>
+            <Field name="carMare" as="select" placeholder="Enter the text">
+              <option key={'a'} defaultValue>
+                Enter the text
+              </option>
+              {carMakes.map((make, i) => (
+                <option key={i} value={make}>
+                  {make}
+                </option>
+              ))}
             </Field>
-          </label>
+          </LabelWrap>
+          <LabelWrap>
+            Price/ 1 hour
+            <Field name="price" as="select" placeholder="To $">
+              <option key={'a'} defaultValue>
+                To $
+              </option>
+              {prices.map((p, i) => (
+                <option key={i} value={p}>
+                  {p}
+                </option>
+              ))}
+            </Field>
+          </LabelWrap>
           <button type="submit">Submit</button>
-        </Form>
-      </Formik> */}
-    </div>
+        </FormWrap>
+      </Formik>
+    </FilterWrapper>
   );
 };

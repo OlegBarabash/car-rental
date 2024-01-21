@@ -55,10 +55,16 @@ export const HeartBtn = styled.button`
     vertical-align: middle;
     /* transition: all 0.2s ease; */
   }
+`;
 
+export const FilledSvg = styled.svg`
+  & use {
+    fill: #3470ff;
+  }
+`;
+export const EmptySvg = styled.svg`
   & use {
     stroke: #ffffff;
-    fill: #3470ff;
   }
 `;
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { fetchCars } from '../../redux/cars/operations';
 import { selectCars } from '../../redux/cars/selectors.js';
 import { useEffect, useState } from 'react';
@@ -16,28 +17,24 @@ import {
 import icons from '../../images/sprite.svg';
 import { CarInfoModal } from 'components/CarInfoModal/CarInfoModal';
 
-export const CarsList = () => {
+export const ItemsList = () => {
   const dispatch = useDispatch();
   const [localItems, setLocalItems] = useState(
     localStorage.getItem('cars') ? JSON.parse(localStorage.getItem('cars')) : []
   );
 
   const handleLike = id => {
+    console.log('localItems 1 ', localItems);
     if (localItems.includes(id)) {
       setLocalItems(() => localItems.filter(c => c !== id));
-      console.log('includ');
     } else if (!localItems.length) {
-      console.log('empty', id);
-      setLocalItems(() => [id]);
+      setLocalItems([id]);
     } else {
-      console.log('add');
       setLocalItems(() => [...localItems, id]);
     }
-  };
-
-  useEffect(() => {
     localStorage.setItem('cars', JSON.stringify(localItems));
-  }, [localItems]);
+    console.log('localItems 2 ', localItems);
+  };
 
   const [openModal, setOpenModal] = useState(null);
 
@@ -46,6 +43,7 @@ export const CarsList = () => {
   }, [dispatch]);
 
   const cars = useSelector(selectCars);
+  const favoriteCars = cars.filter(car => localItems.indexOf(car.id) > -1);
 
   const addressFilter = address => {
     const res = address.split(',');
@@ -70,8 +68,8 @@ export const CarsList = () => {
     <div>
       <h2>CarsList</h2>
       <List>
-        {cars &&
-          cars.map(car => (
+        {favoriteCars &&
+          favoriteCars.map(car => (
             <ListItem key={car.id}>
               <div>
                 <CarImg src={car.img} alt={car.model} />

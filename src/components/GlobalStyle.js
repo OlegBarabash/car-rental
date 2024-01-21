@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
+import { baseTheme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
 	*,
@@ -14,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
 	font-weight: 400;
   margin: 0;
   background-color: white;
-  color: black;
+  color: ${baseTheme.colors.black};
 	}
 
 	code {
