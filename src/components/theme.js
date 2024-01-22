@@ -5,6 +5,7 @@ export const baseTheme = {
     blue: '#3470FF',
     dark_blue: '#0B44CD;',
     gray: 'rgba(18, 20, 23, 0.50)',
+    light_blue: '#b8ccfc',
   },
   animation: {
     duration: '0.25s',

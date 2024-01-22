@@ -1,3 +1,4 @@
+import { baseTheme } from 'components/theme';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -15,7 +16,7 @@ export const ListItem = styled.li`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: ${baseTheme.colors.white};
   border-radius: 14px;
   /* box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08); */
@@ -59,12 +60,12 @@ export const HeartBtn = styled.button`
 
 export const FilledSvg = styled.svg`
   & use {
-    fill: #3470ff;
+    fill: ${baseTheme.colors.blue};
   }
 `;
 export const EmptySvg = styled.svg`
   & use {
-    stroke: #ffffff;
+    stroke: ${baseTheme.colors.white};
   }
 `;
 
@@ -79,12 +80,12 @@ export const NamePriceDiv = styled.div`
   line-height: 1.5;
 
   & p span {
-    color: #3470ff;
+    color: ${baseTheme.colors.blue};
   }
 `;
 
 export const DescriptionText = styled.p`
-  color: rgba(18, 20, 23, 0.5);
+  color: ${baseTheme.colors.gray};
   font-size: 12px;
   line-height: 1.5;
   & svg {
@@ -103,11 +104,25 @@ export const LMButton = styled.button`
   display: flex;
   width: 274px;
   height: 44px;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   border-radius: 12px;
-  background: #3470ff;
+  background: ${baseTheme.colors.blue};
   border: none;
   color: white;
+`;
+
+export const PaginationDiv = styled.div`
+  margin: 40px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  & :disabled {
+    background: ${baseTheme.colors.light_blue};
+    cursor: auto;
+  }
 `;

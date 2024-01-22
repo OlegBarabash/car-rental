@@ -12,6 +12,7 @@ import {
   List,
   ListItem,
   NamePriceDiv,
+  PaginationDiv,
 } from './CarsList.styled';
 import icons from '../../images/sprite.svg';
 import { CarInfoModal } from 'components/CarInfoModal/CarInfoModal';
@@ -21,6 +22,7 @@ export const CarsList = () => {
   const [localItems, setLocalItems] = useState(
     localStorage.getItem('cars') ? JSON.parse(localStorage.getItem('cars')) : []
   );
+  const [page, setPage] = useState(1);
 
   const handleLike = id => {
     if (localItems.includes(id)) {
@@ -39,8 +41,8 @@ export const CarsList = () => {
   const [openModal, setOpenModal] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchCars());
-  }, [dispatch]);
+    dispatch(fetchCars(page));
+  }, [dispatch, page]);
 
   const cars = useSelector(selectCars);
 
@@ -61,6 +63,14 @@ export const CarsList = () => {
     resArr.push(rentalCompany, type, make, mileage, functionalities[0]);
 
     return resArr;
+  };
+
+  const handlePrevPage = () => {
+    setPage(page - 1);
+  };
+
+  const handleNextPage = () => {
+    setPage(page + 1);
   };
 
   return (
@@ -114,6 +124,15 @@ export const CarsList = () => {
       {openModal !== null && (
         <CarInfoModal modal={openModal} closeModal={() => setOpenModal(null)} />
       )}
+
+      <PaginationDiv>
+        <LMButton onClick={handlePrevPage} disabled={page === 1}>
+          ←PREVIOUS
+        </LMButton>
+        <LMButton onClick={handleNextPage} disabled={cars.length < 12}>
+          NEXT→
+        </LMButton>
+      </PaginationDiv>
     </div>
   );
 };

@@ -7,8 +7,8 @@ export const Header = () => {
     <Container>
       <HeaderWrap>
         <HeaderLink to={'/'}>Home</HeaderLink>
-        <HeaderLink to={'/cars'}>Cars</HeaderLink>
-        <HeaderLink to={'/selected'}>Selected</HeaderLink>
+        <HeaderLink to={'/catalog'}>Cars</HeaderLink>
+        <HeaderLink to={'/favorites'}>Selected</HeaderLink>
       </HeaderWrap>
     </Container>
   );
