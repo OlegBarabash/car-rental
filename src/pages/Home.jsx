@@ -4,7 +4,7 @@ export const Home = () => {
   return (
     <Container>
       <h1>Car rental</h1>
-      <body>
+      <div>
         <header>
           <h1>Welcome to [Car Rental Company Name]</h1>
           <p>Your Gateway to Stress-Free Travel</p>
@@ -76,7 +76,7 @@ export const Home = () => {
             </p>
           </section>
         </main>
-      </body>
+      </div>
     </Container>
   );
 };

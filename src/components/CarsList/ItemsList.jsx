@@ -1,12 +1,8 @@
 import React from 'react';
-import { fetchCars } from '../../redux/cars/operations';
-import { selectCars } from '../../redux/cars/selectors.js';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   CarImg,
   DescriptionText,
-  EmptySvg,
   FilledSvg,
   HeartBtn,
   LMButton,
@@ -18,18 +14,17 @@ import icons from '../../images/sprite.svg';
 import { CarInfoModal } from 'components/CarInfoModal/CarInfoModal';
 
 export const ItemsList = () => {
-  const dispatch = useDispatch();
   const [localItems, setLocalItems] = useState(
     localStorage.getItem('cars') ? JSON.parse(localStorage.getItem('cars')) : []
   );
 
-  const handleLike = id => {
-    if (localItems.includes(id)) {
-      setLocalItems(() => localItems.filter(c => c !== id));
+  const handleLike = car => {
+    if (localItems.includes(car)) {
+      setLocalItems(localItems.filter(c => c.id !== car.id));
     } else if (!localItems.length) {
-      setLocalItems(() => [id]);
+      setLocalItems([car]);
     } else {
-      setLocalItems(() => [...localItems, id]);
+      setLocalItems([...localItems, car]);
     }
   };
 
@@ -38,13 +33,6 @@ export const ItemsList = () => {
   }, [localItems]);
 
   const [openModal, setOpenModal] = useState(null);
-
-  useEffect(() => {
-    dispatch(fetchCars());
-  }, [dispatch]);
-
-  const cars = useSelector(selectCars);
-  const favoriteCars = cars.filter(car => localItems.indexOf(car.id) > -1);
 
   const addressFilter = address => {
     const res = address.split(',');
@@ -67,24 +55,17 @@ export const ItemsList = () => {
 
   return (
     <div>
-      <h2>CarsList</h2>
+      <h2>Selected</h2>
       <List>
-        {favoriteCars &&
-          favoriteCars.map(car => (
+        {localItems &&
+          localItems.map(car => (
             <ListItem key={car.id}>
               <div>
                 <CarImg src={car.img} alt={car.model} />
-                <HeartBtn onClick={() => handleLike(car.id)}>
-                  {localItems.includes(car.id) && (
-                    <FilledSvg>
-                      <use href={icons + '#icon-heart-filled'}> </use>
-                    </FilledSvg>
-                  )}
-                  {!localItems.includes(car.id) && (
-                    <EmptySvg>
-                      <use href={icons + '#icon-heart-empty'}> </use>
-                    </EmptySvg>
-                  )}
+                <HeartBtn onClick={() => handleLike(car)}>
+                  <FilledSvg>
+                    <use href={icons + '#icon-heart-filled'}> </use>
+                  </FilledSvg>
                 </HeartBtn>
                 <NamePriceDiv>
                   <p>
@@ -106,10 +87,7 @@ export const ItemsList = () => {
                   ))}
                 </DescriptionText>
               </div>
-
-              <LMButton onClick={() => setOpenModal(car.id)}>
-                Learn more
-              </LMButton>
+              <LMButton onClick={() => setOpenModal(car)}>Learn more</LMButton>
             </ListItem>
           ))}
       </List>

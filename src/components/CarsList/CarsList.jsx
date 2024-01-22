@@ -24,13 +24,13 @@ export const CarsList = () => {
   );
   const [page, setPage] = useState(1);
 
-  const handleLike = id => {
-    if (localItems.includes(id)) {
-      setLocalItems(() => localItems.filter(c => c !== id));
+  const handleLike = car => {
+    if (localItems.includes(car)) {
+      setLocalItems(localItems.filter(c => c.id !== car.id));
     } else if (!localItems.length) {
-      setLocalItems(() => [id]);
+      setLocalItems([car]);
     } else {
-      setLocalItems(() => [...localItems, id]);
+      setLocalItems([...localItems, car]);
     }
   };
 
@@ -82,13 +82,13 @@ export const CarsList = () => {
             <ListItem key={car.id}>
               <div>
                 <CarImg src={car.img} alt={car.model} />
-                <HeartBtn onClick={() => handleLike(car.id)}>
-                  {localItems.includes(car.id) && (
+                <HeartBtn onClick={() => handleLike(car)}>
+                  {localItems.includes(car) && (
                     <FilledSvg>
                       <use href={icons + '#icon-heart-filled'}> </use>
                     </FilledSvg>
                   )}
-                  {!localItems.includes(car.id) && (
+                  {!localItems.includes(car) && (
                     <EmptySvg>
                       <use href={icons + '#icon-heart-empty'}> </use>
                     </EmptySvg>

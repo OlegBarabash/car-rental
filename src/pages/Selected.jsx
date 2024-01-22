@@ -1,10 +1,11 @@
 import { ItemsList } from 'components/CarsList/ItemsList';
+import { Container } from 'components/Container';
 import React from 'react';
 
 export const Selected = () => {
   return (
-    <div>
+    <Container>
       <ItemsList />
-    </div>
+    </Container>
   );
 };

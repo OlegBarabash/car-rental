@@ -33,7 +33,6 @@ export const ModalContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 541px;
-    height: 752px;
     padding: 40px 40px;
   }
 `;

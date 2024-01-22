@@ -14,8 +14,6 @@ import {
   NameDiv,
   RentalBtn,
 } from './CarInfoModal.styled';
-import { useSelector } from 'react-redux';
-import { selectCars } from '../../redux/cars/selectors';
 import icons from '../../images/sprite.svg';
 
 const modalRoot = document.getElementById('modal-root');
@@ -49,27 +47,23 @@ export const CarInfoModal = ({ modal, closeModal }) => {
     };
   }, [modalRef, closeModal, modal]);
 
-  const cars = useSelector(selectCars);
-
-  const car = cars.find(({ id }) => id === modal);
-
-  const getTechInfo = (address = car.address) => {
+  const getTechInfo = (address = modal.address) => {
     const res = address.split(',');
     return [
       [res[1]],
       [res[2]],
-      `Id: ${car.id}`,
-      `Year: ${car.year}`,
-      `Type: ${car.type}`,
-      `Fuel Consumption: ${car.fuelConsumption}`,
-      `Engine Size: ${car.engineSize}`,
+      `Id: ${modal.id}`,
+      `Year: ${modal.year}`,
+      `Type: ${modal.type}`,
+      `Fuel Consumption: ${modal.fuelConsumption}`,
+      `Engine Size: ${modal.engineSize}`,
     ];
   };
 
-  const getRentalConditions = (rc = car.rentalConditions) => {
+  const getRentalConditions = (rc = modal.rentalConditions) => {
     const res = rc.split('\n');
-    res.push(`Mileage: ${car.mileage.toLocaleString('en-US')}`);
-    res.push(`Price: ${car.rentalPrice.toString()}`);
+    res.push(`Mileage: ${modal.mileage.toLocaleString('en-US')}`);
+    res.push(`Price: ${modal.rentalPrice.toString()}`);
 
     return res.map(text => {
       if (text.includes(':')) {
@@ -87,12 +81,12 @@ export const CarInfoModal = ({ modal, closeModal }) => {
             <use href={icons + '#icon-x'}> </use>
           </svg>
         </CloseBtn>
-        <CarPic src={car.img} alt={car.model} />
+        <CarPic src={modal.img} alt={modal.model} />
         <InfoDiv>
           <div>
             <NameDiv>
               <h3>
-                {car.make} <span>{car.model}</span> ,{car.year}
+                {modal.make} <span>{modal.model}</span> ,{modal.year}
               </h3>
             </NameDiv>
             <DescriptionInfo>
@@ -108,7 +102,7 @@ export const CarInfoModal = ({ modal, closeModal }) => {
                 </span>
               ))}
             </DescriptionInfo>
-            <DescriptionText>{car.description}</DescriptionText>
+            <DescriptionText>{modal.description}</DescriptionText>
           </div>
 
           <div>
@@ -116,10 +110,10 @@ export const CarInfoModal = ({ modal, closeModal }) => {
               Accessories and functionalities:
             </AccessoriesHeder>
             <DescriptionInfo>
-              {car.accessories.map((text, i) => (
+              {modal.accessories.map((text, i) => (
                 <span key={i}>
                   {text}
-                  {i !== car.accessories.length - 1 && (
+                  {i !== modal.accessories.length - 1 && (
                     <svg>
                       <use href={icons + '#icon-vector'}> </use>
                     </svg>
@@ -127,10 +121,10 @@ export const CarInfoModal = ({ modal, closeModal }) => {
                 </span>
               ))}
               <br />
-              {car.functionalities.map((text, i) => (
+              {modal.functionalities.map((text, i) => (
                 <span key={i}>
                   {text}
-                  {i !== car.accessories.length - 1 && (
+                  {i !== modal.accessories.length - 1 && (
                     <svg>
                       <use href={icons + '#icon-vector'}> </use>
                     </svg>
