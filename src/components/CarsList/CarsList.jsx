@@ -83,12 +83,12 @@ export const CarsList = () => {
               <div>
                 <CarImg src={car.img} alt={car.model} />
                 <HeartBtn onClick={() => handleLike(car)}>
-                  {localItems.includes(car) && (
+                  {localItems.find(({ id }) => id === car.id) && (
                     <FilledSvg>
                       <use href={icons + '#icon-heart-filled'}> </use>
                     </FilledSvg>
                   )}
-                  {!localItems.includes(car) && (
+                  {!localItems.find(({ id }) => id === car.id) && (
                     <EmptySvg>
                       <use href={icons + '#icon-heart-empty'}> </use>
                     </EmptySvg>
@@ -115,9 +115,7 @@ export const CarsList = () => {
                 </DescriptionText>
               </div>
 
-              <LMButton onClick={() => setOpenModal(car.id)}>
-                Learn more
-              </LMButton>
+              <LMButton onClick={() => setOpenModal(car)}>Learn more</LMButton>
             </ListItem>
           ))}
       </List>

@@ -1,5 +1,6 @@
 import { baseTheme } from 'components/theme';
 import styled from 'styled-components';
+const { duration, cubicBezier } = baseTheme.animation;
 
 export const List = styled.ul`
   display: flex;
@@ -109,9 +110,16 @@ export const LMButton = styled.button`
   align-items: center;
   flex-shrink: 0;
   border-radius: 12px;
-  background: ${baseTheme.colors.blue};
+  background-color: ${baseTheme.colors.dark_blue};
   border: none;
   color: white;
+
+  transition: background-color ${duration} ${cubicBezier};
+
+  &:hover,
+  &:focus {
+    background-color: ${baseTheme.colors.blue};
+  }
 `;
 
 export const PaginationDiv = styled.div`

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { baseTheme } from 'components/theme';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderWrap = styled.div`
@@ -9,8 +10,15 @@ export const HeaderWrap = styled.div`
   justify-content: space-evenly;
 `;
 
-export const HeaderLink = styled(Link)`
+export const HeaderLink = styled(NavLink)`
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
+  color: ${baseTheme.colors.black};
+  &.active {
+    color: ${baseTheme.colors.blue};
+  }
+  &:hover {
+    color: ${baseTheme.colors.dark_blue};
+  }
 `;

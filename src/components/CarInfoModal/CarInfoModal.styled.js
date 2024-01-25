@@ -1,6 +1,8 @@
 import { baseTheme } from 'components/theme';
 import styled from 'styled-components';
 
+const { duration, cubicBezier } = baseTheme.animation;
+
 export const ModalBackdrop = styled.aside`
   position: fixed;
   top: 0;
@@ -162,6 +164,14 @@ export const RentalBtn = styled.a`
   align-items: center;
   border-radius: 12px;
   text-decoration: none;
+  cursor: pointer;
   color: ${baseTheme.colors.white};
-  background: ${baseTheme.colors.blue};
+  background-color: ${baseTheme.colors.dark_blue};
+
+  transition: background-color ${duration} ${cubicBezier};
+
+  &:hover,
+  &:focus {
+    background-color: ${baseTheme.colors.blue};
+  }
 `;
