@@ -1,5 +1,5 @@
 import { fetchCars } from '../../redux/cars/operations';
-import { selectCars } from '../../redux/cars/selectors.js';
+import { selectCars, selectSelected } from '../../redux/cars/selectors.js';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -16,35 +16,29 @@ import {
 } from './CarsList.styled';
 import icons from '../../images/sprite.svg';
 import { CarInfoModal } from 'components/CarInfoModal/CarInfoModal';
+import { addSelected, deleteSelected } from '../../redux/cars/selectedSlice';
 
 export const CarsList = () => {
   const dispatch = useDispatch();
-  const [localItems, setLocalItems] = useState(
-    localStorage.getItem('cars') ? JSON.parse(localStorage.getItem('cars')) : []
-  );
+
+  const cars = useSelector(selectCars);
+  const localItems = useSelector(selectSelected);
+
   const [page, setPage] = useState(1);
 
   const handleLike = car => {
-    if (localItems.includes(car)) {
-      setLocalItems(localItems.filter(c => c.id !== car.id));
-    } else if (!localItems.length) {
-      setLocalItems([car]);
+    if (localItems.selected.find(({ id }) => id === car.id)) {
+      dispatch(deleteSelected(car));
     } else {
-      setLocalItems([...localItems, car]);
+      dispatch(addSelected(car));
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem('cars', JSON.stringify(localItems));
-  }, [localItems]);
 
   const [openModal, setOpenModal] = useState(null);
 
   useEffect(() => {
     dispatch(fetchCars(page));
   }, [dispatch, page]);
-
-  const cars = useSelector(selectCars);
 
   const addressFilter = address => {
     const res = address.split(',');
@@ -83,12 +77,12 @@ export const CarsList = () => {
               <div>
                 <CarImg src={car.img} alt={car.model} />
                 <HeartBtn onClick={() => handleLike(car)}>
-                  {localItems.find(({ id }) => id === car.id) && (
+                  {localItems.selected.find(({ id }) => id === car.id) && (
                     <FilledSvg>
                       <use href={icons + '#icon-heart-filled'}> </use>
                     </FilledSvg>
                   )}
-                  {!localItems.find(({ id }) => id === car.id) && (
+                  {!localItems.selected.find(({ id }) => id === car.id) && (
                     <EmptySvg>
                       <use href={icons + '#icon-heart-empty'}> </use>
                     </EmptySvg>

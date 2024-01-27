@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   CarImg,
   DescriptionText,
@@ -12,25 +12,21 @@ import {
 } from './CarsList.styled';
 import icons from '../../images/sprite.svg';
 import { CarInfoModal } from 'components/CarInfoModal/CarInfoModal';
+import { selectSelected } from '../../redux/cars/selectors.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSelected, deleteSelected } from '../../redux/cars/selectedSlice';
 
 export const ItemsList = () => {
-  const [localItems, setLocalItems] = useState(
-    localStorage.getItem('cars') ? JSON.parse(localStorage.getItem('cars')) : []
-  );
+  const dispatch = useDispatch();
+  const { selected: localItems } = useSelector(selectSelected);
 
   const handleLike = car => {
-    if (localItems.includes(car)) {
-      setLocalItems(localItems.filter(c => c.id !== car.id));
-    } else if (!localItems.length) {
-      setLocalItems([car]);
+    if (localItems.find(({ id }) => id === car.id)) {
+      dispatch(deleteSelected(car));
     } else {
-      setLocalItems([...localItems, car]);
+      dispatch(addSelected(car));
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem('cars', JSON.stringify(localItems));
-  }, [localItems]);
 
   const [openModal, setOpenModal] = useState(null);
 

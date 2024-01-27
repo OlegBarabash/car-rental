@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { carReducer } from './cars/carsSlice';
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -10,15 +9,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { selectedReducer } from './cars/selectedSlice';
-
-const persistConfig = {
-  key: 'cars',
-  storage,
-};
-
-const persistedSelectedReducer = persistReducer(persistConfig, selectedReducer);
+import { persistedSelectedReducer } from './cars/selectedSlice';
 
 export const store = configureStore({
   reducer: {
