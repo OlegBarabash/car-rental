@@ -4,10 +4,13 @@ import styled from 'styled-components';
 
 export const HeaderWrap = styled.div`
   width: 100%;
-  margin-top: 8px;
+  height: 60px;
+
   margin-bottom: 24px;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  background-color: ${baseTheme.colors.light_blue};
 `;
 
 export const HeaderLink = styled(NavLink)`
