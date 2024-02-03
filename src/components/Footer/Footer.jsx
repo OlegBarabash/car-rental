@@ -1,6 +1,7 @@
 import { Container } from 'components/Container';
 import React from 'react';
 import { FooterDiv, Row } from './Footer.styled';
+import { HeaderLink } from 'components/Header/Header.styled';
 
 export const Footer = () => {
   return (
@@ -8,16 +9,16 @@ export const Footer = () => {
       <footer>
         <FooterDiv>
           <Row>
-            <a href="#">
+            <a href="google.com">
               <i>facebook</i>
             </a>
-            <a href="#">
+            <a href="google.com">
               <i>instagram</i>
             </a>
-            <a href="#">
+            <a href="google.com">
               <i>youtube</i>
             </a>
-            <a href="#">
+            <a href="google.com">
               <i>twitter</i>
             </a>
           </Row>
@@ -25,19 +26,20 @@ export const Footer = () => {
           <Row>
             <ul>
               <li>
-                <a href="#">Contact us</a>
+                <HeaderLink to={'/'}>Contact us</HeaderLink>
+                {/* <a href="qwerty">Contact us</a> */}
               </li>
               <li>
-                <a href="#">Our Services</a>
+                <a href="qwerty">Our Services</a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="qwerty">Privacy Policy</a>
               </li>
               <li>
-                <a href="#">Terms & Conditions</a>
+                <a href="qwerty">Terms & Conditions</a>
               </li>
               <li>
-                <a href="#">Career</a>
+                <a href="qwerty">Career</a>
               </li>
             </ul>
           </Row>
