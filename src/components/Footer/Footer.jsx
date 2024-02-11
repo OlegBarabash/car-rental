@@ -9,17 +9,25 @@ export const Footer = () => {
       <footer>
         <FooterDiv>
           <Row>
-            <a href="google.com">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i>facebook</i>
             </a>
-            <a href="google.com">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i>instagram</i>
             </a>
-            <a href="google.com">
+            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
               <i>youtube</i>
             </a>
-            <a href="google.com">
-              <i>twitter</i>
+            <a href="https://www.x.com/" target="_blank" rel="noreferrer">
+              <i>X</i>
             </a>
           </Row>
 
