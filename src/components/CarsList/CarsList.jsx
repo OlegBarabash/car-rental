@@ -10,6 +10,7 @@ import {
   HeartBtn,
   LMButton,
   List,
+  ListHeader,
   ListItem,
   NamePriceDiv,
   PaginationDiv,
@@ -69,7 +70,7 @@ export const CarsList = () => {
 
   return (
     <div>
-      <h2>CarsList</h2>
+      <ListHeader>CarsList</ListHeader>
       <List>
         {cars &&
           cars.map(car => (

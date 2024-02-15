@@ -2,6 +2,10 @@ import { baseTheme } from 'components/theme';
 import styled from 'styled-components';
 const { duration, cubicBezier } = baseTheme.animation;
 
+export const ListHeader = styled.h2`
+  margin: 30px auto;
+`;
+
 export const List = styled.ul`
   display: flex;
   gap: 29px;
